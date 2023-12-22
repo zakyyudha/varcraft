@@ -1,0 +1,36 @@
+{
+  "name": "@zakyyudha/varcraft",
+  "version": "1.0.0",
+  "description": "A versatile variable handling library",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zakyyudha/varcraft.git"
+  },
+  "keywords": [
+    "typescript",
+    "npm",
+    "variable",
+    "handling"
+  ],
+  "author": "Zaky Yudha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zakyyudha/varcraft/issues"
+  },
+  "homepage": "https://github.com/zakyyudha/varcraft#readme",
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}

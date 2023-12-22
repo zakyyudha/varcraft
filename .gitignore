@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+
+# TypeScript
+dist/
+*.js
+*.js.map
+*.d.ts
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Build files
+build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
