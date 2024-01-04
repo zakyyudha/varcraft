@@ -4,7 +4,7 @@
 
 **A versatile variable handling library for JavaScript and TypeScript.**
 
-[![npm version](https://badge.fury.io/js/varcraft.svg)](https://www.npmjs.com/package/varcraft)
+[![npm version](https://badge.fury.io/js/varcraft.svg)](https://www.npmjs.com/package/@zakyyudha/varcraft)
 [![GitHub issues](https://img.shields.io/github/issues/zakyyudha/varcraft)](https://github.com/zakyyudha/varcraft/issues)
 [![GitHub stars](https://img.shields.io/github/stars/zakyyudha/varcraft)](https://github.com/zakyyudha/varcraft/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
