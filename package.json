@@ -1,6 +1,6 @@
 {
   "name": "@zakyyudha/varcraft",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A versatile variable handling library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
