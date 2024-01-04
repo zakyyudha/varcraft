@@ -19,7 +19,7 @@
 ## Installation
 
 ```bash
-npm install varcraft
+npm install @zakyyudha/varcraft
 ```
 
 ## Usage
@@ -27,12 +27,10 @@ npm install varcraft
 ### Basic Example
 
 ```javascript
-import { VarCraft } from 'varcraft';
+import VarCraft from '@zakyyudha/varcraft';
 
-const myVarCraft = new VarCraft();
-
-myVarCraft.set('x', 42);
-console.log(myVarCraft.get('x')); // Output: 42
+VarCraft.set('x', 42);
+console.log(VarCraft.get('x')); // Output: 42
 ```
 
 
@@ -45,15 +43,15 @@ VarCraft is designed to handle complex scenarios involving variable management a
 You can dynamically create variables based on certain conditions or user input:
 
 ```typescript
-const myVarCraft = new VarCraft();
+import VarCraft from '@zakyyudha/varcraft';
 
 function createDynamicVariable(name: string, condition: boolean, valueIfTrue: any, valueIfFalse: any): void {
   const value = condition ? valueIfTrue : valueIfFalse;
-  myVarCraft.set(name, value);
+  VarCraft.set(name, value);
 }
 
 createDynamicVariable('isProduction', process.env.NODE_ENV === 'production', true, false);
-console.log(myVarCraft.get('isProduction')); // Output: true or false
+console.log(VarCraft.get('isProduction')); // Output: true or false
 ```
 
 ### Variable Transformation
@@ -61,18 +59,18 @@ console.log(myVarCraft.get('isProduction')); // Output: true or false
 VarCraft allows you to transform variables using custom functions:
 
 ```typescript
-const myVarCraft = new VarCraft();
+import VarCraft from '@zakyyudha/varcraft';
 
 function transformVariable(name: string, transformationFunction: (value: any) => any): void {
-  const originalValue = myVarCraft.get(name);
+  const originalValue = VarCraft.get(name);
   const transformedValue = transformationFunction(originalValue);
   myVarCraft.set(name, transformedValue);
 }
 
 // Example: Convert a string to uppercase
-myVarCraft.set('message', 'hello');
+VarCraft.set('message', 'hello');
 transformVariable('message', (value) => value.toUpperCase());
-console.log(myVarCraft.get('message')); // Output: 'HELLO'
+console.log(VarCraft.get('message')); // Output: 'HELLO'
 ```
 
 ### Variable Dependencies
@@ -80,15 +78,15 @@ console.log(myVarCraft.get('message')); // Output: 'HELLO'
 Manage variables that depend on each other by updating them accordingly:
 
 ```typescript
-const myVarCraft = new VarCraft();
+import VarCraft from '@zakyyudha/varcraft';
 
-myVarCraft.set('x', 5);
+VarCraft.set('x', 5);
 
 function updateDependentVariable(): void {
-  const x = myVarCraft.get('x');
-  myVarCraft.set('y', x * 2);
+  const x = VarCraft.get('x');
+  VarCraft.set('y', x * 2);
 }
 
 updateDependentVariable();
-console.log(myVarCraft.get('y')); // Output: 10
+console.log(VarCraft.get('y')); // Output: 10
 ```
