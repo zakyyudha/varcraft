@@ -12,7 +12,7 @@ VarCraft.setPredefinedVar('_map', (arr, expression) => {
     return VarCraft.parseExpression(expression, {
       ...arr,
       _item_: item,
-      _index_: index,
+      _index_: index
     })
   })
 })
@@ -22,7 +22,7 @@ VarCraft.setPredefinedVar('_filter', (arr, expression) => {
     return VarCraft.parseExpression(expression, {
       ...arr,
       _item_: item,
-      _index_: index,
+      _index_: index
     })
   })
 })
@@ -33,7 +33,7 @@ VarCraft.setPredefinedVar('_reduce', (arr, expression, initialValue) => {
       ...arr,
       _item_: currentValue,
       _index_: index,
-      _accumulator_: accumulator,
+      _accumulator_: accumulator
     })
   }, VarCraft.parseExpression(initialValue))
 })
@@ -46,18 +46,13 @@ VarCraft.setPredefinedVar('_chunk', (arr, size) => {
   return chunks
 })
 
-VarCraft.setPredefinedVar('_includes', (arr, value) => {
-  return arr.includes(value)
-})
-
 VarCraft.setPredefinedVar(
   '_if',
   (conditionExpression, trueExpression, falseExpression) => {
     return VarCraft.parseExpression(conditionExpression)
       ? VarCraft.parseExpression(trueExpression)
       : VarCraft.parseExpression(falseExpression)
-  },
-)
+  })
 
 VarCraft.setPredefinedVar('_switch', (value, ...cases) => {
   const defaultCase = cases[cases.length - 1]
@@ -74,6 +69,30 @@ VarCraft.setPredefinedVar('_switch', (value, ...cases) => {
     }
   }
   return defaultCaseValue
+})
+
+VarCraft.setPredefinedVar('_some', (arr, expression) => {
+  return arr.some((item: any, index: any) => {
+    return VarCraft.parseExpression(expression, {
+      ...arr,
+      _item_: item,
+      _index_: index
+    })
+  })
+})
+
+VarCraft.setPredefinedVar('_every', (arr, expression) => {
+  return arr.every((item: any, index: any) => {
+    return VarCraft.parseExpression(expression, {
+      ...arr,
+      _item_: item,
+      _index_: index
+    })
+  })
+})
+
+VarCraft.setPredefinedVar('_includes', (arr, value) => {
+  return arr.includes(VarCraft.parseExpression(value))
 })
 
 export default VarCraft
