@@ -1,17 +1,32 @@
 {
   "name": "@zakyyudha/varcraft",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "packageManager": "pnpm@10.18.3",
   "description": "A versatile variable handling library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "test:typecheck": "tsc -p tsconfig.test.json",
     "format": "biome format --write src test",
     "format-check": "biome format src test",
     "lint": "biome lint src test",
-    "lint-check": "biome lint src test"
+    "lint-check": "biome lint src test",
+    "check": "biome check src test",
+    "check:write": "biome check --write src test",
+    "verify": "pnpm run check && pnpm run build && pnpm run test:typecheck && pnpm run test",
+    "pack:smoke": "node scripts/verify-package.mjs",
+    "prepack": "pnpm run verify && pnpm run build"
   },
   "jest": {
     "transform": {
@@ -61,6 +76,6 @@
     "dist"
   ],
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.22.12"
   }
 }

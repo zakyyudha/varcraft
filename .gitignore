@@ -17,3 +17,10 @@ build/
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+# Agent/planning state (local only)
+.omo/
+
+# Private downstream fixtures (copied from a private repository; local only)
+test/fixtures/buying-helpers.ts
+test/buying-corpus.test.ts
