@@ -116,7 +116,10 @@ export function tokenize(source: string): readonly Token[] {
         while (isDigit(source[offset])) offset += 1
       }
       const raw = source.slice(start, offset)
-      add({ kind: 'number', value: Number(raw), offset: start })
+      const value = Number(raw)
+      if (!Number.isFinite(value))
+        throw new ExpressionSyntaxError('Numeric literal must be finite', start)
+      add({ kind: 'number', value, offset: start })
       continue
     }
 

@@ -21,7 +21,13 @@ export const PRECEDENCE: Readonly<Record<string, number>> = {
 }
 
 const BINARY = new Set(Object.keys(PRECEDENCE))
-const RESERVED = new Set([
+/**
+ * Names expression syntax can never resolve to a user binding: keywords,
+ * operators, and the literal words `true`/`false`/`null`/`undefined`. Exported
+ * so the engine's registration APIs enforce the same policy as the parser
+ * instead of allowing unreachable bindings.
+ */
+export const RESERVED = new Set([
   'this',
   'new',
   'delete',
@@ -43,6 +49,7 @@ const RESERVED = new Set([
   'true',
   'false',
   'null',
+  'undefined',
 ])
 
 export function isBinary(value: string): value is BinaryOperator {

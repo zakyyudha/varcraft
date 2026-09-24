@@ -50,6 +50,9 @@ type ExpressionShape =
       readonly target: Expression
       readonly name: string
       readonly args: readonly Expression[]
+      // SEC-2: the receiver is a continuous optional chain, so a nullish
+      // receiver short-circuits the call instead of dispatching on `undefined`.
+      readonly optional?: boolean
     }
   | {
       readonly kind: 'member'
@@ -62,16 +65,26 @@ type ExpressionShape =
       readonly key: Expression
     }
   | {
-      readonly kind: 'optional-member'
-      readonly target: Expression
-      readonly key: string | Expression
-      readonly computed: boolean
+      readonly kind: 'optional-chain'
+      readonly base: Expression
+      readonly segments: readonly ChainSegment[]
     }
 
 export type Expression = ExpressionShape & {
   readonly offset: number
   readonly height: number
 }
+export type ChainSegment =
+  | {
+      readonly access: 'member'
+      readonly key: string
+      readonly optional: boolean
+    }
+  | {
+      readonly access: 'computed'
+      readonly key: Expression
+      readonly optional: boolean
+    }
 export type Assignment = {
   readonly kind: 'assignment'
   readonly name: string

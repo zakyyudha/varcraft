@@ -1,5 +1,5 @@
 import { assertNever, type BinaryOperator } from './ast'
-import { primitive, valueFromHost, type Value } from './values'
+import { primitive, type Value, valueFromHost } from './values'
 
 export function binary(
   operator: BinaryOperator,

@@ -58,9 +58,3 @@ export function ownRead(target: Value, key: string): Value {
   if (!Object.prototype.hasOwnProperty.call(object, key)) return undefined
   return valueFromHost(Reflect.get(object, key))
 }
-
-export function expressionText(value: unknown): string {
-  const text = String(primitive(valueFromHost(value)))
-  limit('source', text.length)
-  return text
-}

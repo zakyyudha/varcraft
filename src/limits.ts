@@ -6,6 +6,7 @@ export const LIMITS = {
   args: 64,
   array: 1024,
   string: 16384,
+  keys: 1024,
   evaluations: 2048,
   nesting: 32,
   work: 100000,
@@ -23,6 +24,20 @@ export class LimitError extends RangeError {
 export function limit(resource: Resource, count: number): void {
   if (count > LIMITS[resource]) throw new LimitError(resource)
 }
+
+// Each host `evaluate`/`parseExpression` call opens one `Budget` for its whole
+// synchronous tree: the parser/interpreter, every nested helper re-evaluation,
+// array-spread/scope construction, and object snapshot all debit the SAME
+// `work`/`evaluations`/`nesting` counters. The budget is discarded when the
+// outermost call returns (success or throw), so no counter leaks into a later
+// evaluation.
+//
+// SCOPE OF THE GUARANTEE: it bounds VarCraft's OWN interpreter/helper work. It
+// does NOT bound the CPU a trusted host callback burns inside its own body — a
+// registered callback can loop or allocate arbitrarily. Host callbacks also run
+// unbudgeted when invoked directly off `get()` outside any `withBudget` scope
+// (there, `spendWork` is a no-op). Treat registered callbacks as trusted
+// capabilities, not as sandboxed work.
 
 /** Mutable counters shared by all synchronous nested evaluations and helpers. */
 export class Budget {
