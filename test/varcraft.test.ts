@@ -1,8 +1,10 @@
-import { default as varCraftInstance } from '../src'
+import { VarCraft } from '../src/varcraft'
 
 describe('VarCraft', () => {
-  afterEach(() => {
-    varCraftInstance.clear()
+  let varCraftInstance: VarCraft
+
+  beforeEach(() => {
+    varCraftInstance = new VarCraft({ builtins: true })
   })
 
   it('should handle variable string', () => {
